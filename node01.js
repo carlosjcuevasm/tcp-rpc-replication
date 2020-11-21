@@ -1,7 +1,9 @@
 var xmlrpc = require('xmlrpc')
+var fs = require('fs')
 var portNumber = 9090
 var hostNumber = 'localhost'
 var magicNumber = 1962
+
 
 var dic = {}
 
@@ -34,6 +36,8 @@ server.on('Get', function (err, params, callback) {
             console.log(`Property ${params[0]} does not exist`)
             callback(null,`Property ${params[0]} does not exist`)
         }
+        
+        
     console.log(dic)
     }
     else{
@@ -114,4 +118,34 @@ server.on('Expire', function (err, params, callback) {
         callback(null,'Not authorized')
     }
 })
+
+const xml2js = require('xml2js');
+
+var parser = new xml2js.Parser({explicitArray : false});
+
+
+let xml_string = fs.readFileSync("config_node1.xml", "utf8");
+
+var leHood ={
+    ips:[],
+    ports:[]
+}
+
+
+
+parser.parseString(xml_string, function(error, result) {
+    if(error === null) {
+        console.log(result.xml.neighbour[0].$);
+        for(i=0;i<3;i++){
+            leHood.ips.push(result.xml.neighbour[i].$.ip)
+            leHood.ports.push(result.xml.neighbour[i].$.port)        
+        }
+        console.log(leHood)
+    }
+    else {
+        console.log(error);
+    }
+});
+
+
 console.log('XML-RPC server listening on port 9090')
