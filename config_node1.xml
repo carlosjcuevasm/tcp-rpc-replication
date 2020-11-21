@@ -1,4 +1,5 @@
 <xml>
+<neighbour ip='localhost' port='9090'> </neighbour>
 <neighbour ip='localhost' port='9091'> </neighbour>
 <neighbour ip='localhost' port='9092'> </neighbour>
 <neighbour ip='localhost' port='9093'> </neighbour>

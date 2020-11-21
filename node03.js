@@ -1,6 +1,6 @@
 var xmlrpc = require('xmlrpc')
 var fs = require('fs')
-var portNumber = 9091
+var portNumber = 9093
 var hostNumber = 'localhost'
 var magicNumber = 1962
 
@@ -19,12 +19,12 @@ server.on('Set', function (err, params, callback) {
     dic[params[0]] =params[1]
     console.log(dic)  
     
-    var client1 = xmlrpc.createClient({ host: leHood.ips[0], port: leHood.ports[0], path: '/'})
-    var client2 = xmlrpc.createClient({ host: leHood.ips[3], port: leHood.ports[3], path: '/'})
-    if (params[3]!=0)
-    client1.methodCall('Set', [params[0],params[1],magicNumber,1], function (error, res) {})
-    if(params[1]!=3)
-    client2.methodCall('Set', [params[0],params[1],magicNumber,1], function (error, res) {})
+    var client1 = xmlrpc.createClient({ host: leHood.ips[2], port: leHood.ports[2], path: '/'})
+    var client2 = xmlrpc.createClient({ host: leHood.ips[1], port: leHood.ports[1], path: '/'})
+    if(params[3]!=2)
+        client1.methodCall('Set', [params[0],params[1],magicNumber,3], function (error, res) {})
+    if(params[3]!=1)
+        client2.methodCall('Set', [params[0],params[1],magicNumber,3], function (error, res) {})
     callback(null, '')
     }
     else{
@@ -155,4 +155,4 @@ parser.parseString(xml_string, function(error, result) {
 });
 
 
-console.log('XML-RPC server listening on port 9090')
+console.log('XML-RPC server listening on port 9093')
