@@ -17,7 +17,7 @@ server.on('Set', function (err, params, callback) {
     if(params[2]==magicNumber){
     console.log('Method call params for \'Set\': ' + params)
     dic[params[0]] =params[1]
-    console.log(dic)  
+      
     
     var client1 = xmlrpc.createClient({ host: leHood.ips[0], port: leHood.ports[0], path: '/'})
     var client2 = xmlrpc.createClient({ host: leHood.ips[3], port: leHood.ports[3], path: '/'})
@@ -45,7 +45,7 @@ server.on('Get', function (err, params, callback) {
         
         
         
-    console.log(dic)
+    
     }
     else{
         console.log('Not authorized');
@@ -78,7 +78,7 @@ server.on('Inc', function (err, params, callback) {
         console.log("Not authorized")
         callback(null,"Not authorized")
     }
-    console.log(dic)
+    
     
 })
 
